@@ -1,3 +1,5 @@
+require("dotenv").config(); // Load environment variables from .env
+
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -9,7 +11,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/form-submit", async (req, res) => {
   try {
-    await axios.post("http://127.0.0.1:5000/submit", {
+    await axios.post(`${process.env.BACKEND_URL}/submit`, {
       username: req.body.username,
       password: req.body.password,
     });
